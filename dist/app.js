@@ -14,7 +14,7 @@ function checkIfSetAndListIsIdentical(a, b) {
 }
 function checkWin() {
     if (checkIfSetAndListIsIdentical(numbersToAcchieve, achievedNumbers)) {
-        alert("You won!");
+        alert("Gratulerer, du vant!");
         // achievedNumbers.clear();
         dice1.innerText = "";
         dice2.innerText = "";
@@ -28,7 +28,7 @@ function checkWin() {
 function checkLoss() {
     if (new Set(achievedNumbers).size !== achievedNumbers.length ||
         Math.max(...achievedNumbers) > Math.max(...numbersToAcchieve)) {
-        alert("Game Over!");
+        alert("Auda, prøv igjen! 😄");
         resetGame();
     }
 }
