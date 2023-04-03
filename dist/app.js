@@ -40,6 +40,7 @@ function resetGame() {
         const numberElement = numberElements[i];
         numberElement.classList.add("missing");
     }
+    achievedNumbers = [];
 }
 function updateNumbersContainer() {
     const numberElements = numbersContainer.children;
