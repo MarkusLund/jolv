@@ -8,9 +8,13 @@ const resetButton = document.getElementById(
 )! as HTMLButtonElement;
 const chooseButtons = document.getElementById("chooseButtons")!;
 const numbersContainer = document.getElementById("numbers-container")!;
+const winModalTitle = document.getElementById("modalTitle")!;
+const winModalText = document.getElementById("modalText")!;
+const winOverlay = document.getElementById("overlay")!;
 
 let dice1roll = 1;
 let dice2roll = 1;
+let numRolls = 0;
 
 const numbersToAcchieve = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 let achievedNumbers: number[] = [];
@@ -21,16 +25,8 @@ function checkIfSetAndListIsIdentical(a: Set<number>, b: number[]) {
 
 function checkWin() {
   if (checkIfSetAndListIsIdentical(numbersToAcchieve, achievedNumbers)) {
-    alert("Gratulerer, du vant!");
-    dice1.innerText = "";
-    dice2.innerText = "";
-
-    const numberElements = numbersContainer.children;
-
-    for (let i = numberElements.length - 1; i >= 0; i--) {
-      const numberElement = numberElements[i];
-      numberElement.classList.add("missing");
-    }
+    openPopup("Gratulerer!", `Jolven gikk opp og du brukte ${numRolls} kast!`);
+    resetGame();
   }
 }
 
@@ -44,6 +40,7 @@ function isLoss(current: number[], goal: Set<number>) {
 function resetGame() {
   dice1.innerText = "⚅";
   dice2.innerText = "⚅";
+  numRolls = 0;
 
   const numberElements = numbersContainer.children;
 
@@ -71,6 +68,16 @@ function updateNumbersContainer() {
   }
 }
 
+function openPopup(title: string, text: string) {
+  winModalTitle.textContent = title;
+  winModalText.textContent = text;
+  winOverlay.style.display = "flex";
+}
+
+function closePopup() {
+  winOverlay.style.display = "none";
+}
+
 function addEachToAcchievedNumbers(numbers: number[]) {
   numbers.forEach((number: number) => {
     achievedNumbers.push(number);
@@ -92,6 +99,7 @@ diceButton.addEventListener("click", () => {
 rollButton.addEventListener("click", () => {
   dice1roll = Math.floor(Math.random() * 6) + 1;
   dice2roll = Math.floor(Math.random() * 6) + 1;
+  numRolls += 1;
   dice1.innerText = numberToDiceImage(dice1roll);
   dice2.innerText = numberToDiceImage(dice2roll);
   // Display choosebuttons
