@@ -52,3 +52,13 @@ body {
 .number.missing {
   opacity: 1;
 }
+
+button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+button:disabled:hover {
+  background-color: gray;
+  cursor: not-allowed;
+}
