@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="no">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jolv!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./style.css" />
     <!-- Google tag (gtag.js) -->
     <script
@@ -21,35 +27,58 @@
     </script>
   </head>
   <body>
-    <h1>JOLV</h1>
-    <div class="overlay" id="overlay">
-      <div class="popup">
-        <h2 id="modalTitle"></h2>
-        <p id="modalText"></p>
-        <button onclick="closePopup()">Start på nytt</button>
+    <div class="game-wrapper">
+      <div class="game-board">
+        <h1>JOLV</h1>
+        <p class="subtitle">Lukk brettet</p>
+
+        <div class="overlay" id="overlay">
+          <div class="popup">
+            <div class="popup-icon">&#x1F3B2;</div>
+            <h2 id="modalTitle"></h2>
+            <p id="modalText"></p>
+            <button class="primary" onclick="closePopup()">Start p&aring; nytt</button>
+          </div>
+        </div>
+
+        <div class="numbers-section">
+          <div id="numbers-container">
+            <div class="number missing">1</div>
+            <div class="number missing">2</div>
+            <div class="number missing">3</div>
+            <div class="number missing">4</div>
+            <div class="number missing">5</div>
+            <div class="number missing">6</div>
+            <div class="number missing">7</div>
+            <div class="number missing">8</div>
+            <div class="number missing">9</div>
+          </div>
+        </div>
+
+        <div class="dice-section">
+          <div class="dice-container">
+            <div id="dice1" class="dice" data-value="6"></div>
+            <div id="dice2" class="dice" data-value="6"></div>
+          </div>
+          <div class="roll-counter" id="rollCounter">
+            Kast: <span id="rollCounterValue">0</span>
+          </div>
+        </div>
+
+        <div class="actions-section">
+          <button class="button primary" id="rollButton">Rull terning</button>
+          <div id="chooseButtons" class="hidden">
+            <button class="button secondary" id="sumButton">Bruk sum</button>
+            <button class="button secondary" id="diceButton">Bruk begge tall</button>
+          </div>
+          <button class="button danger hidden" id="resetButton">Start p&aring; nytt</button>
+        </div>
       </div>
+
+      <footer class="game-footer">
+        Et tradisjonelt norsk terningspill
+      </footer>
     </div>
-    <div id="numbers-container">
-      <div class="number missing">1</div>
-      <div class="number missing">2</div>
-      <div class="number missing">3</div>
-      <div class="number missing">4</div>
-      <div class="number missing">5</div>
-      <div class="number missing">6</div>
-      <div class="number missing">7</div>
-      <div class="number missing">8</div>
-      <div class="number missing">9</div>
-    </div>
-    <div class="dice-container">
-      <div id="dice1" class="dice">⚅</div>
-      <div id="dice2" class="dice">⚅</div>
-    </div>
-    <button class="button" id="rollButton">Rull terning</button>
-    <div id="chooseButtons" class="hidden">
-      <button class="button" id="sumButton">Bruk sum</button>
-      <button class="button" id="diceButton">Bruk begge tall</button>
-    </div>
-    <button class="button hidden" id="resetButton">Start på nytt</button>
 
     <script src="./dist/app.js"></script>
   </body>
